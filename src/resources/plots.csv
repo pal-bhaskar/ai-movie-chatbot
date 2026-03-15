@@ -1,0 +1,51 @@
+movie_id,title,plot_summary
+1,The Shawshank Redemption,"Two imprisoned men bond over years, finding solace and eventual redemption through acts of common decency."
+2,The Godfather,The aging patriarch of an organized crime dynasty transfers control to his reluctant son.
+3,The Dark Knight,"Batman raises the stakes in his war on crime with the help of Lt. Gordon and DA Harvey Dent, but the Joker wreaks havoc."
+4,Schindler's List,"In German-occupied Poland, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce."
+5,The Lord of the Rings: The Return of the King,Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam.
+6,Pulp Fiction,"The lives of two mob hitmen, a boxer, and a pair of bandits intertwine in four tales of violence and redemption."
+7,12 Angry Men,A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.
+8,The Good the Bad and the Ugly,A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold.
+9,Fight Club,An insomniac office worker forms an underground fight club with a soap salesman that becomes something more sinister.
+10,Forrest Gump,"The presidencies of Kennedy and Johnson, Vietnam, and other events unfold through the perspective of a man with a low IQ."
+11,Inception,A thief who steals corporate secrets through dream-sharing technology is tasked with planting an idea into a CEO's mind.
+12,The Matrix,A computer hacker learns about the true nature of reality and his role in the war against its controllers.
+13,Goodfellas,"The story of Henry Hill and his life in the mob, covering his career from the 1950s to the 1980s."
+14,One Flew Over the Cuckoo's Nest,"A criminal pleads insanity and is admitted to a mental institution, where he rebels against the oppressive nurse."
+15,Interstellar,A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+16,Se7en,Two detectives hunt a serial killer who uses the seven deadly sins as his motives.
+17,The Silence of the Lambs,A young FBI cadet must receive the help of an imprisoned cannibal killer to catch another serial killer.
+18,Saving Private Ryan,"Following the Normandy Landings, a group of US soldiers go behind enemy lines to retrieve a paratrooper."
+19,The Green Mile,"The lives of guards on Death Row are affected by one of their charges, a huge man with a mysterious gift."
+20,Parasite,Greed and class discrimination threaten the newly formed symbiotic relationship between a wealthy family and a poor one.
+21,The Prestige,"After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything."
+22,The Lion King,"Lion prince Simba and his father are targeted by his treacherous uncle, who wants to seize the throne."
+23,Whiplash,A promising young drummer enrolls at a cutthroat music conservatory where his teacher will stop at nothing to push him to greatness.
+24,Gladiator,A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family.
+25,The Departed,An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang.
+26,American History X,A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path.
+27,Memento,A man with short-term memory loss attempts to track down his wife's murderer using notes and tattoos.
+28,The Usual Suspects,"A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which begin when five criminals meet at a line-up."
+29,Léon: The Professional,"12-year-old Mathilda is taken in by Léon, a professional cleaner, after her family is murdered by a corrupt DEA agent."
+30,Spirited Away,"During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits."
+31,Back to the Future,"Marty McFly is accidentally sent back in time to 1955, where he must ensure his parents fall in love."
+32,The Pianist,A Polish Jewish musician struggles to survive the destruction of the Warsaw Ghetto during World War II.
+33,Terminator 2: Judgment Day,"A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son John from a more advanced model."
+34,Alien,"After a space merchant vessel receives an unknown transmission as a distress call, one of the crew is attacked by a mysterious life form."
+35,WALL-E,"In the far future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind."
+36,Avengers: Infinity War,The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos.
+37,Django Unchained,"With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner."
+38,The Wolf of Wall Street,"Based on the true story of Jordan Belfort, from his rise to a wealthy stockbroker living the high life to his fall involving crime and corruption."
+39,Inglourious Basterds,"In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish US soldiers coincides with a plan by a cinema owner."
+40,Joker,"In Gotham City, mentally troubled comedian Arthur Fleck embarks on a downward spiral of revolution and bloody crime."
+41,The Shining,A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence.
+42,2001: A Space Odyssey,Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins.
+43,Apocalypse Now,A US Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel.
+44,Heat,A group of professional bank robbers start to feel the heat from police when they unknowingly leave a clue at their latest heist.
+45,Toy Story,A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy.
+46,No Country for Old Men,Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.
+47,A Beautiful Mind,"After John Nash, a brilliant but asocial mathematician, accepts secret work in cryptography, his life takes a turn for the nightmarish."
+48,The Truman Show,An insurance salesman discovers his whole life is actually a reality TV show.
+49,Requiem for a Dream,The drug-induced utopias of four Coney Island people are shattered when their addictions run deep.
+50,Eternal Sunshine of the Spotless Mind,"When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories."
