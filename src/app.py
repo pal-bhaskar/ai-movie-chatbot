@@ -1,3 +1,31 @@
+"""
+Streamlit web app for the AI Movie Chatbot.
+
+This module implements the Streamlit UI and ties together the backend services:
+- MySQL / Neo4j / ChromaDB ingestion (via `ingest_data.py`)
+- MCP tool server (via `mcp_servers.py`)
+- LangChain agent logic for answering questions and executing tool calls
+
+Typical usage
+-------------
+Run the app locally with:
+
+    streamlit run src/app.py
+
+Requirements
+------------
+- Streamlit installed in the active Python environment
+- Local services running as expected:
+    * MySQL on localhost (movies_db)
+    * Neo4j on bolt://localhost:7687
+    * ChromaDB on localhost:8000
+- `resources/` data files present for ingestion
+
+This file contains:
+- UI layout and interaction handlers
+- Initialization of the LangChain agent and tool wrappers
+- Optional ingestion / startup logic (if present)
+"""
 import streamlit as st
 import asyncio
 from datetime import timedelta

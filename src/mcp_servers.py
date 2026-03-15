@@ -1,3 +1,13 @@
+"""
+MCP tool server exposing database query and semantic search tools for the AI Movie Chatbot.
+
+This module defines MCP tools to:
+- run read-only SQL queries against the local MySQL movies database
+- run Cypher queries against the local Neo4j movie/person graph
+- perform semantic similarity search against ChromaDB plot embeddings
+
+It starts a FastMCP server (SSE transport) on localhost:8080 when executed as a script.
+"""
 from mcp.server.fastmcp import FastMCP
 import mysql.connector
 from neo4j import GraphDatabase
@@ -16,14 +26,16 @@ print("Model loaded successfully!")
 
 @mcp.tool()
 def query_sql(sql_query: str) -> str:
-    """Executes a read-only SQL query on MySQL to fetch structured data (budget, release year, ratings)."""
+    """Execute a read-only SQL query on the MySQL movies database.
+
+    Returns a formatted string of query results or an error message.
+    """
     try:
-        #conn = mysql.connector.connect(host="localhost", user="root", password="rootpassword", database="movies_db")
         conn = mysql.connector.connect(host="127.0.0.1", user="root", password="rootpassword", database="movies_db")
         cursor = conn.cursor()
         cursor.execute(sql_query)
         rows = cursor.fetchall()
-        
+
         # Format output
         if not rows:
             return "No results found."
@@ -31,7 +43,7 @@ def query_sql(sql_query: str) -> str:
         result_str = " | ".join(columns) + "\n"
         for row in rows:
             result_str += " | ".join(str(val) for val in row) + "\n"
-            
+
         conn.close()
         return result_str
     except Exception as e:
@@ -39,13 +51,15 @@ def query_sql(sql_query: str) -> str:
 
 @mcp.tool()
 def query_cypher(cypher_query: str) -> str:
-    """Executes a Cypher query on Neo4j for relationships ('movies starring X', 'directed by Y')."""
+    """Execute a Cypher query on the Neo4j movie/person graph.
+
+    Returns serialized record data or an error message.
+    """
     try:
-        #driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"))
         driver = GraphDatabase.driver("bolt://127.0.0.1:7687", auth=("neo4j", "password"))
         with driver.session() as session:
             result = session.run(cypher_query)
-            records =[str(record.data()) for record in result]
+            records = [str(record.data()) for record in result]
         driver.close()
         return "\n".join(records) if records else "No results found."
     except Exception as e:
@@ -53,7 +67,10 @@ def query_cypher(cypher_query: str) -> str:
 
 @mcp.tool()
 def semantic_search(prompt: str) -> str:
-    """Takes a description and performs a vector similarity search in ChromaDB."""
+    """Perform a semantic similarity search in ChromaDB using plot summaries.
+
+    Returns a list of matching movies (title + id) or an error message.
+    """
     try:
         client = chromadb.HttpClient(host="127.0.0.1", port=8000)
         # Pass the pre-loaded embedding function here

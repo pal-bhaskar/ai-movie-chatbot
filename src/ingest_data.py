@@ -1,3 +1,14 @@
+"""
+Ingest data into the local development databases used by the AI Movie Chatbot.
+
+This module provides helper functions to populate:
+- MySQL (movies + ratings tables)
+- Neo4j (movie/person graph relationships)
+- ChromaDB (vector embeddings for plot summaries)
+
+Each ingest function assumes the corresponding service is running locally with
+default ports and credentials as used in this project.
+"""
 import pandas as pd
 import mysql.connector
 from neo4j import GraphDatabase
@@ -5,7 +16,13 @@ import chromadb
 from chromadb.utils import embedding_functions
 import time
 
+
 def ingest_mysql():
+    """Load movie metadata and ratings into MySQL.
+
+    Expects `resources/movies_metadata.csv` and `resources/ratings.csv` to exist.
+    Creates `movies` and `ratings` tables if missing, and inserts records.
+    """
     print("Ingesting MySQL...")
     conn = mysql.connector.connect(host="localhost", user="root", password="rootpassword", database="movies_db")
     cursor = conn.cursor()
@@ -43,7 +60,13 @@ def ingest_mysql():
     conn.close()
     print("MySQL Ingestion Complete.")
 
+
 def ingest_neo4j():
+    """Load movie nodes and placeholder people nodes into Neo4j.
+
+    Creates unique constraints on Movie.movieId and Person.name, then merges
+    nodes and relationships from `resources/movies_metadata.csv`.
+    """
     print("Ingesting Neo4j...")
     driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"))
     df_movies = pd.read_csv('resources/movies_metadata.csv').fillna("")
@@ -73,7 +96,13 @@ def ingest_neo4j():
     driver.close()
     print("Neo4j Ingestion Complete.")
 
+
 def ingest_chromadb():
+    """Create a ChromaDB collection and ingest plot summaries as embeddings.
+
+    Uses the default embedding function (sentence-transformers all-MiniLM-L6-v2).
+    Reads `resources/plots.csv` and upserts documents into `movie_plots` collection.
+    """
     print("Ingesting ChromaDB...")
     client = chromadb.HttpClient(host="localhost", port=8000)
     # Uses sentence-transformers internally (all-MiniLM-L6-v2) to embed locally
@@ -93,6 +122,7 @@ def ingest_chromadb():
     if ids:
         collection.add(documents=docs, metadatas=metadatas, ids=ids)
     print("ChromaDB Ingestion Complete.")
+
 
 if __name__ == "__main__":
     # Give DBs a few seconds to fully spin up
