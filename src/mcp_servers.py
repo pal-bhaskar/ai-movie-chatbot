@@ -25,8 +25,12 @@ handler = logging_loki.LokiHandler(
 )
 logger = logging.getLogger("mcp-server")
 logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-logger.addHandler(logging.StreamHandler()) # Keep logs in terminal too
+if not logger.handlers:
+    logger.addHandler(handler)
+    logger.addHandler(logging.StreamHandler()) # Keep console logs too
+
+logger.info("Starting MCP Server initialization...")
+# -----------------------------------
 
 # Initialize the FastMCP server
 mcp = FastMCP("MovieDataServer")
@@ -54,11 +58,22 @@ def query_sql(sql_query: str) -> str:
         if not rows:
             logger.info("SQL Query returned 0 results.")
             return "No results found."
+        
+        # --- NEW: PREVENT MASSIVE PAYLOAD CRASHES ---
+        MAX_ROWS = 30
+        if len(rows) > MAX_ROWS:
+            logger.warning(f"Query returned {len(rows)} rows. Truncating to {MAX_ROWS}.")
+            rows = rows[:MAX_ROWS]
+            warning_msg = f"\n... (Results truncated to {MAX_ROWS} rows to prevent memory overflow. Ask the user to be more specific) ..."
+        else:
+            warning_msg = ""
+        # --------------------------------------------
+
         columns = [col[0] for col in cursor.description]
         result_str = " | ".join(columns) + "\n"
         for row in rows:
             result_str += " | ".join(str(val) for val in row) + "\n"
-
+        result_str += warning_msg
         logger.info(f"SQL Query successful. Returned {len(rows)} rows.")
         conn.close()
         return result_str

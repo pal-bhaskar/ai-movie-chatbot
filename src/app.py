@@ -46,8 +46,12 @@ handler = logging_loki.LokiHandler(
 )
 logger = logging.getLogger("streamlit-ui")
 logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-logger.addHandler(logging.StreamHandler())
+if not logger.handlers:
+    logger.addHandler(handler)
+    logger.addHandler(logging.StreamHandler())
+
+logger.info("Starting MCP Server initialization...")
+# ---------------------------------
 
 
 # --- 1. Async MCP Tool Wrapper ---
@@ -84,7 +88,7 @@ tools =[
     Tool(
         name="query_sql",
         func=run_sql,
-        description="Fetch budget, release_year, ratings, num_votes. SQL Schema: movies(id INT, title VARCHAR, budget FLOAT, release_year INT), ratings(movie_id INT, rating FLOAT, num_votes INT)."
+        description="Fetch budget, release_year, ratings, num_votes. SQL Schema: movies(id INT, title VARCHAR, budget FLOAT, release_year INT), ratings(movie_id INT, rating FLOAT, num_votes INT). ALWAYS append 'LIMIT 20' to your queries so you don't crash the system with too much data."
     ),
     Tool(
         name="query_cypher",
