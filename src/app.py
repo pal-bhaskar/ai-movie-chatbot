@@ -35,6 +35,20 @@ from langchain_ollama import ChatOllama
 from langchain_core.tools import Tool
 from langchain_core.messages import HumanMessage, AIMessage
 from langgraph.prebuilt import create_react_agent
+import logging
+import logging_loki
+
+# --- Setup Loki Logging for UI ---
+handler = logging_loki.LokiHandler(
+    url="http://127.0.0.1:3100/loki/api/v1/push",
+    tags={"app": "movie-bot", "component": "streamlit-ui"},
+    version="1",
+)
+logger = logging.getLogger("streamlit-ui")
+logger.setLevel(logging.INFO)
+logger.addHandler(handler)
+logger.addHandler(logging.StreamHandler())
+
 
 # --- 1. Async MCP Tool Wrapper ---
 async def call_mcp_tool(tool_name: str, args: dict) -> str:
@@ -112,6 +126,7 @@ for msg in st.session_state.messages:
 
 # Chat Input
 if prompt := st.chat_input("Ask a question about movies..."):
+    logger.info(f"User prompt received: {prompt}")
     with st.chat_message("user"):
         st.write(prompt)
     
@@ -129,10 +144,15 @@ if prompt := st.chat_input("Ask a question about movies..."):
                 
                 # 4. Display the final AI response
                 final_ai_msg = updated_messages[-1]
+
+                # Log the AI's final answer
+                logger.info(f"AI Response: {final_ai_msg.content}")
+
                 st.write(final_ai_msg.content)
                 
                 # 5. Save the new state back to memory so the bot remembers the conversation
                 st.session_state.messages = updated_messages
                 
             except Exception as e:
+                logger.error(f"UI Orchestration Error: {str(e)}")
                 st.error(f"Error: {str(e)}")

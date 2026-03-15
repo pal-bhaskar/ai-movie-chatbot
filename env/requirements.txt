@@ -9,3 +9,4 @@ chromadb
 sentence-transformers
 pandas
 pydantic
+python-logging-loki
