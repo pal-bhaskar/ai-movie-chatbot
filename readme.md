@@ -94,3 +94,41 @@ Log In: Enter the username admin and password admin.
 * In the dropdown at the top left, ensure **Loki** is selected.
 * Under the Label filters section, select **app = movie-bot**.
 * Click the big blue **Run query** button in the top right.
+
+## Peek into Neo4j
+
+The official Neo4j Browser allows you to visually explore the nodes (Movies, Persons) and relationships (ACTED_IN, DIRECTED) that you created during your ingestion script.
+
+Here is how to visualize your graph and its ontology:
+### 1. Open Neo4j Browser
+
+* Open your web browser and navigate to http://localhost:7474.
+* You will be greeted by a login screen. Connect using the credentials you defined in your **docker-compose.yml**:
+   *  Connect URL: neo4j://localhost:7687
+   * Database: neo4j
+   * Username: neo4j
+   * Password: password
+* Click **Connect**.
+
+### 2. Visualize the Ontology (Database Schema)
+
+To see a high-level overview of how your data is structured (your ontology), run this command in the query bar at the top of the screen:
+
+```console
+CALL db.schema.visualization()
+```
+
+Press the blue **Play** button on the right of the query bar to run it.
+
+#### What you will see:
+A visual diagram showing a Movie node, a Person node, and arrows indicating the ACTED_IN and DIRECTED relationships connecting them. This confirms your graph schema was created correctly.
+
+### 3. Visualize the Actual Graph Data
+
+To see the actual movies, actors, and directors connected together, you can run queries that return paths.
+
+Try running this query in the bar at the top to see a random sample of 25 movies and the people connected to them:
+
+```console
+MATCH p=(:Person)-
+```
