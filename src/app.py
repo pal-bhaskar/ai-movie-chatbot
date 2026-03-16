@@ -34,7 +34,7 @@ from mcp.client.session import ClientSession
 from langchain_ollama import ChatOllama
 from langchain_core.tools import Tool
 from langchain_core.messages import HumanMessage, AIMessage
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 import logging
 import logging_loki
 
@@ -110,10 +110,10 @@ if "messages" not in st.session_state:
     st.session_state.messages =[]
 
 if "agent" not in st.session_state:
-    llm = ChatOllama(model="llama3.1", temperature=0, base_url="http://127.0.0.1:11434")
+    llm = ChatOllama(model="llama3.1:latest", temperature=0, base_url="http://127.0.0.1:11434")
     
-    # create_react_agent is the modern LangGraph replacement for AgentExecutor
-    st.session_state.agent = create_react_agent(llm, tools=tools)
+    # create_agent is the modern LangGraph replacement for create_react_agent
+    st.session_state.agent = create_agent(llm, tools=tools)
 
 # --- 4. Streamlit UI ---
 st.title("🍿 Local AI Movie Chatbot")

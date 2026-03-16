@@ -8,6 +8,7 @@ This module defines MCP tools to:
 
 It starts a FastMCP server (SSE transport) on localhost:8080 when executed as a script.
 """
+import uvicorn
 from mcp.server.fastmcp import FastMCP
 import mysql.connector
 from neo4j import GraphDatabase
@@ -124,8 +125,7 @@ def semantic_search(prompt: str) -> str:
         return f"Vector DB Error: {str(e)}"
 
 if __name__ == "__main__":
-    # The official MCP SDK looks for the PORT environment variable
-    os.environ["PORT"] = "8080"
-    # Serve tools over Server-Sent Events locally on port 8080
+    # Use uvicorn to serve the SSE app on port 8080 explicitly
+    # to avoid port 8000 conflicts with ChromaDB.
     logger.info("Starting MCP Tool Server on http://localhost:8080")
-    mcp.run(transport="sse")
+    uvicorn.run(mcp.sse_app(), host="127.0.0.1", port=8080)
