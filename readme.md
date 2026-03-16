@@ -1,3 +1,5 @@
+# AI Movie Chatbot
+
 Here is a comprehensive, step-by-step guide to building your Full-Stack Local AI Movie Chatbot.
 
 **We will use Docker Compose for the databases, FastMCP (part of the official Model Context Protocol SDK) for the tool servers, Ollama for local inference, and Streamlit / LangChain for the conversational UI.**
