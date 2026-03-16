@@ -64,6 +64,19 @@ streamlit run app.py
 * In Terminal 2, start the Streamlit frontend: ```streamlit run app.py ```
 * To stop docker containers: ```docker-compose -f docker-compose.yml down -v -t 0```
 
+## Troubleshooting
+
+If you are having issues with the MCP Tool Server, try the following:
+* Check that the MCP Tool Server is running and accessible at http://localhost:8080
+* Check that the Streamlit frontend is running and accessible at http://localhost:8501
+* Check that the databases are running and accessible at http://localhost:3306, http://localhost:7687, and http://localhost:8000
+* Check that the Ollama server is running and accessible at http://localhost:11434
+* Check that the Grafana server is running and accessible at http://localhost:3000
+* Check that the Loki server is running and accessible at http://localhost:3100/ready
+* Check that the Neo4j server is running and accessible at http://localhost:7474
+* To find a process's PID, use the following command: ```netstat -ano | findstr :8080```
+* To kill a process, use the following command: ```taskkill /F /PID <PID>```
+
 ## Access/ Query MySQL DB
 If you prefer a visual interface to see your tables, run queries, and explore the data, you can download a free SQL client like DBeaver, MySQL Workbench, or TablePlus.
 
