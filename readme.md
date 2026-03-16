@@ -62,6 +62,7 @@ streamlit run app.py
 * Run data ingest: ```python ingest_data.py``` (Let it finish)
 * In Terminal 1, start the MCP Tool Server: ```python mcp_servers.py ```
 * In Terminal 2, start the Streamlit frontend: ```streamlit run app.py ```
+* To stop docker containers: ```docker-compose -f docker-compose.yml down -v -t 0```
 
 ## Access/ Query MySQL DB
 If you prefer a visual interface to see your tables, run queries, and explore the data, you can download a free SQL client like DBeaver, MySQL Workbench, or TablePlus.
